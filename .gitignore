@@ -20,7 +20,7 @@
 [Aa]ssets/Plugins/Editor/JetBrains*
 
 #ObjectAssets Folder
-[Aa]ssets/ObjectAssets/
+[Aa]ssets/ObjectAssets/*
 
 # Visual Studio cache directory
 .vs/
