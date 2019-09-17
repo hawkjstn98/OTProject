@@ -6,6 +6,9 @@
     <e p="G:\Unity Proj\OverthinkProject" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="ObjectAssets" t="Include">
+          <e p="REAADD.cs" t="Include" />
+        </e>
         <e p="Scenes" t="Include">
           <e p="Tst.cs" t="Include" />
         </e>
