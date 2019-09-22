@@ -6,8 +6,27 @@
     <e p="G:\Unity Proj\OverthinkProject" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="GameSystem" t="Include">
+          <e p="Constant" t="Include">
+            <e p="Enum" t="Include">
+              <e p="DataEnum.cs" t="Include" />
+            </e>
+            <e p="GameConstants.cs" t="Include" />
+            <e p="PathConstants.cs" t="Include" />
+          </e>
+          <e p="Entity" t="Include">
+            <e p="GameSettings.cs" t="Include" />
+          </e>
+          <e p="Lib" t="Include">
+            <e p="FileHelper.cs" t="Include" />
+          </e>
+          <e p="Service" t="Include">
+            <e p="PreferencesService.cs" t="Include" />
+          </e>
+        </e>
         <e p="ObjectAssets" t="Include">
           <e p="REAADD.cs" t="Include" />
+          <e p="TAI !!!!!!!!.txt" t="Include" />
         </e>
         <e p="Scenes" t="Include">
           <e p="Tst.cs" t="Include" />
