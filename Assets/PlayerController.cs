@@ -18,6 +18,17 @@ public class PlayerController : MonoBehaviour
  
     Rigidbody m_rb;
     
+    // Character Joystick Movement Variable
+    private Transform m_Cam;
+    private Vector3 m_CamForward;
+    private Vector3 m_Move;
+    private float movement_speed = 10f;
+    Quaternion targetRotation;
+
+    public bool m_Jump;
+    public float HInput;
+    public float VInput;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,8 +50,14 @@ public class PlayerController : MonoBehaviour
         {
             gravityScale = 1f;
         }
-    }
 
+        if(!isGrounded && m_Jump == true){
+            Debug.Log("masuk");
+            isGrounded = true;
+            this.GetComponent<Rigidbody>().AddForce(Vector3.up * 400f);
+        }
+    
+    }
     void OnEnable ()
     {
         m_rb = GetComponent<Rigidbody>();
@@ -51,5 +68,32 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 gravity = globalGravity * gravityScale * Vector3.up;
         m_rb.AddForce(gravity, ForceMode.Acceleration);
+
+        // Character Movement
+        if(m_Cam != null){
+            // Calculate camera realative direction to move:
+            m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
+            m_Move = VInput * m_CamForward + HInput * m_Cam.right;
+        }
+        else{
+            //we use world-relative directions in the case of no main camera
+            m_Move = VInput * Vector3.forward + HInput * Vector3.right;
+        }
+
+        Vector3 targetDirection = new Vector3(HInput, 0f, VInput);
+        targetDirection = Camera.main.transform.TransformDirection(targetDirection);
+        targetDirection.y = 0.0f;
+        if(HInput != 0f || VInput != 0f){
+            targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+        }
+        this.transform.rotation = targetRotation;
+        this.transform.position += Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up) * VInput * Time.deltaTime * movement_speed;
+        this.transform.position += Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up) * HInput * Time.deltaTime * movement_speed;
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if(other.gameObject.name == "Cube"){
+            isGrounded = false;
+        }
     }
 }
