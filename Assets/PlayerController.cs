@@ -2,20 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : GameConstants
 {
     private bool isGrounded = false;
     
-    // Gravity Scale editable on the inspector
-    // providing a gravity scale per object
- 
-    public float gravityScale = 1.0f;
- 
-    // Global Gravity doesn't appear in the inspector. Modify it here in the code
-    // (or via scripting) to define a different default gravity for all objects.
- 
-    public static float globalGravity = -9.81f;
- 
     Rigidbody m_rb;
     
     // Character Joystick Movement Variable
@@ -28,35 +18,22 @@ public class PlayerController : MonoBehaviour
     public bool m_Jump;
     public float HInput;
     public float VInput;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log(m_rb.velocity.y);
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        if (!isGrounded && Input.GetKey(KeyCode.Space))
-        {
-            gravityScale = 0.00001f;
-            Debug.Log(m_rb.velocity.y);
-            float v = Input.GetAxisRaw("Vertical");
-            float h = Input.GetAxisRaw("Horizontal");
-            this.transform.Translate(h * 10, 0, v * 10);
-        }
-        else if (!isGrounded)
-        {
-            gravityScale = 1f;
-        }
-
-        if(!isGrounded && m_Jump == true){
-            Debug.Log("masuk");
-            isGrounded = true;
+        if(isGrounded && m_Jump == true){
+            isGrounded = false;
             this.GetComponent<Rigidbody>().AddForce(Vector3.up * 400f);
         }
-    
+        else if (!isGrounded && m_Jump == true && m_rb.velocity.y < 0)
+        {
+            SetGravityScale(0.001f);
+        }
+        
+        if(!m_Jump)
+        {
+            SetGravityScale(1f);
+        }
     }
     void OnEnable ()
     {
@@ -66,7 +43,7 @@ public class PlayerController : MonoBehaviour
  
     void FixedUpdate ()
     {
-        Vector3 gravity = globalGravity * gravityScale * Vector3.up;
+        Vector3 gravity = GetGlobalGravityScale() * GetGravityScale() * Vector3.up;
         m_rb.AddForce(gravity, ForceMode.Acceleration);
 
         // Character Movement
@@ -92,8 +69,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.name == "Cube"){
-            isGrounded = false;
+        if(other.gameObject.tag == "Ground"){
+            isGrounded = true;
         }
     }
 }

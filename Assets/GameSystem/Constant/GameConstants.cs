@@ -1,18 +1,31 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameConstants : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameConstants Instance;
+    private float GRAVITY_SCALE = 1.0f;
+    private static float GLOBAL_GRAVITY_SCALE = -9.81f;
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public float GetGravityScale()
     {
-        
+        return GRAVITY_SCALE;
+    }
+    
+    public float GetGlobalGravityScale()
+    {
+        return GLOBAL_GRAVITY_SCALE;
+    }
+    
+    public void SetGravityScale(float GRAVITY_SCALE)
+    {
+        this.GRAVITY_SCALE = GRAVITY_SCALE;
     }
 }
