@@ -38,5 +38,15 @@ namespace Assets.GameSystem.Service
             File.WriteAllText(PathConstants.DATA_PATH+PathConstants.SETTING_FILE,
                 json);
         }
+
+        public static float ConvertToUnityValue(float val)
+        {
+            return val / 100;
+        }
+
+        public static float ConvertToFOV(float val)
+        {
+            return val / 180;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.GameSystem.Constant;
 using UnityEngine;
 
 public class PlayerController : GameConstants
@@ -21,11 +22,11 @@ public class PlayerController : GameConstants
     
     void Update()
     {
-        if(isGrounded && m_Jump == true){
+        if(isGrounded && m_Jump){
             isGrounded = false;
             this.GetComponent<Rigidbody>().AddForce(Vector3.up * 400f);
         }
-        else if (!isGrounded && m_Jump == true && m_rb.velocity.y < 0)
+        else if (!isGrounded && m_Jump && m_rb.velocity.y < 0)
         {
             SetGravityScale(0.001f);
         }
@@ -47,7 +48,7 @@ public class PlayerController : GameConstants
         m_rb.AddForce(gravity, ForceMode.Acceleration);
 
         // Character Movement
-        if(m_Cam != null){
+        if(null != m_Cam){
             // Calculate camera realative direction to move:
             m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
             m_Move = VInput * m_CamForward + HInput * m_Cam.right;
@@ -60,7 +61,7 @@ public class PlayerController : GameConstants
         Vector3 targetDirection = new Vector3(HInput, 0f, VInput);
         targetDirection = Camera.main.transform.TransformDirection(targetDirection);
         targetDirection.y = 0.0f;
-        if(HInput != 0f || VInput != 0f){
+        if(0 != HInput  || 0f != VInput){
             targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
         }
         this.transform.rotation = targetRotation;
@@ -69,7 +70,7 @@ public class PlayerController : GameConstants
     }
 
     private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.tag == "Ground"){
+        if("Ground".Equals(other.gameObject.tag)){
             isGrounded = true;
         }
     }

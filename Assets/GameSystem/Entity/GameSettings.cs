@@ -29,6 +29,36 @@ namespace Assets.GameSystem.Entity
             get => fieldOfView;
             set => fieldOfView = value;
         }
+
+        public void minVolume()
+        {
+            volume--;
+        }
+        
+        public void minLighting()
+        {
+            lighting--;
+        }
+
+        public void minFOV()
+        {
+            fieldOfView--;
+        }
+
+        public void plusVolume()
+        {
+            volume++;
+        }
+
+        public void plusLighting()
+        {
+            lighting++;
+        }
+
+        public void plusFOV()
+        {
+            fieldOfView++;
+        }
     }
 }
 
