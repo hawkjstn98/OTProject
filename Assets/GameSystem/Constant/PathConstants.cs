@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using Assets.GameSystem.Constant.Enum;
 using UnityEngine;
-using Application = UnityEngine.WSA.Application;
 
-namespace Assets.GameSystem.Constant
+namespace GameSystem.Constant
 {
     public abstract class PathConstants
     {
         //Path
-        public const string DATA_PATH = "Assets/GameSystem/Data/";
+        public static  readonly string DATA_PATH = Application.persistentDataPath;
+            
         
         //File
         public const string SETTING_FILE = "Settings.json";
+        
 
         /// <summary>
         /// Getting File Path

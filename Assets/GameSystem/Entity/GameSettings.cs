@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.GameSystem.Entity
+namespace GameSystem.Entity
 {
     [Serializable]
     public class GameSettings

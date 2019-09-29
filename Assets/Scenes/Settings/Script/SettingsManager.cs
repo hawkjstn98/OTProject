@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using Assets.GameSystem.Constant;
 using UnityEngine;
 using Assets.GameSystem.Constant.Enum;
-using Assets.GameSystem.Entity;
-using Assets.GameSystem.Service;
+using GameSystem.Constant;
+using GameSystem.Entity;
+using GameSystem.Service;
 using TMPro;
 using UnityEngine.UI;
 
@@ -116,5 +117,10 @@ public class SettingsManager : MonoBehaviour
     public void Apply()
     {
         PreferencesService.WriteSettings(gameSettings);
+    }
+
+    public void Exit()
+    {
+        SceneService.Instance.ChangeScene(SceneEnum.MainMenu);
     }
 }

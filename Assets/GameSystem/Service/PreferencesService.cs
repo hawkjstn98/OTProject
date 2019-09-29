@@ -3,11 +3,13 @@ using System.IO;
 using Assets.GameSystem.Constant;
 using Assets.GameSystem.Constant.Enum;
 using UnityEngine;
-using Assets.GameSystem.Entity;
 using Assets.GameSystem.Lib;
+using GameSystem.Constant;
+using GameSystem.Entity;
+using TMPro;
 
 
-namespace Assets.GameSystem.Service
+namespace GameSystem.Service
 {
     public class PreferencesService: MonoBehaviour
     {
@@ -25,7 +27,13 @@ namespace Assets.GameSystem.Service
                 GameSettings gameSettings = FileHelper<GameSettings>.JsonStringParserToObject(json, new GameSettings());
                 return gameSettings;
             }
-            throw new ArgumentNullException("Data Not Found");
+
+            GameSettings gameSetting = LoadDefaultGameSettings();
+            
+            File.WriteAllText(@""+PathConstants.DATA_PATH+PathConstants.SETTING_FILE, 
+                FileHelper<GameSettings>.ObjectParserToJsonString(gameSetting));
+           
+            return gameSetting;
         }
 
         /// <summary>
@@ -47,6 +55,15 @@ namespace Assets.GameSystem.Service
         public static float ConvertToFOV(float val)
         {
             return val / 180;
+        }
+
+        private static GameSettings LoadDefaultGameSettings()
+        {
+           GameSettings gameSettings = new GameSettings();
+           gameSettings.Volume = GameConstants.DEFAULT_VOLUME;
+           gameSettings.Lighting = GameConstants.DEFAULT_LIGHTING;
+           gameSettings.FieldOfView = GameConstants.DEFAULT_FOV;
+           return gameSettings;
         }
     }
 }

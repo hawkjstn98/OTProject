@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.GameSystem.Entity;
-using Assets.GameSystem.Service;
+using GameSystem.Entity;
+using GameSystem.Service;
 using UnityEngine;
 
 public class Tst : MonoBehaviour

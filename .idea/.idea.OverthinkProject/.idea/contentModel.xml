@@ -62,6 +62,11 @@
         <e p="PlayerController.cs" t="Include" />
         <e p="PlayerInput.cs" t="Include" />
         <e p="Scenes" t="Include">
+          <e p="MainMenu" t="Include">
+            <e p="Script" t="Include">
+              <e p="MainMenuManager.cs" t="Include" />
+            </e>
+          </e>
           <e p="Settings" t="Include">
             <e p="Script" t="Include">
               <e p="SettingsManager.cs" t="Include" />

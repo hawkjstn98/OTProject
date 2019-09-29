@@ -17,6 +17,9 @@ namespace Assets.GameSystem.Constant
         public const int MAX_VOLUME = 100;
         public const int MAX_FOV = 180;
         public const int MAX_LIGHTING = 100;
+        public const int DEFAULT_VOLUME = 100;
+        public const int DEFAULT_LIGHTING = 100;
+        public const int DEFAULT_FOV = 70;
 
         private void Awake()
         {
