@@ -23,7 +23,7 @@ public class PlayerController : GameConstants
     
     void Update()
     {
-        if(isGrounded && m_Jump){
+        if(isGrounded && m_Jump && m_rb.velocity.y < 0.001f){
             isGrounded = false;
             this.GetComponent<Rigidbody>().AddForce(Vector3.up * 400f);
         }
