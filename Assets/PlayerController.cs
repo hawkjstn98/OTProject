@@ -17,6 +17,7 @@ public class PlayerController : GameConstants
     Quaternion targetRotation;
 
     public bool m_Jump;
+    private float verticalVelocity;
     public float HInput;
     public float VInput;
     
@@ -28,7 +29,9 @@ public class PlayerController : GameConstants
         }
         else if (!isGrounded && m_Jump && m_rb.velocity.y < 0)
         {
-            SetGravityScale(0.001f);
+            SetGravityScale(1f);
+            verticalVelocity = GetGravityScale() * Time.deltaTime * -50f;
+            this.GetComponent<Rigidbody>().velocity = new Vector3(0, verticalVelocity, 0);
         }
         
         if(!m_Jump)
@@ -61,12 +64,15 @@ public class PlayerController : GameConstants
         Vector3 targetDirection = new Vector3(HInput, 0f, VInput);
         targetDirection = Camera.main.transform.TransformDirection(targetDirection);
         targetDirection.y = 0.0f;
+
         if(0 != HInput  || 0f != VInput){
             targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
         }
+
         this.transform.rotation = targetRotation;
         this.transform.position += Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up) * VInput * Time.deltaTime * movement_speed;
         this.transform.position += Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up) * HInput * Time.deltaTime * movement_speed;
+
     }
 
     private void OnCollisionEnter(Collision other) {
