@@ -12,7 +12,10 @@ namespace GameSystem.Service
     {
         public static SceneService Instance;
         private bool isActive;
+        private bool isLoading;
         private string scene;
+        private float progress;
+        private AsyncOperation sceneOperation;
 
         void Awake()
         {
@@ -25,24 +28,47 @@ namespace GameSystem.Service
         {
             if (isActive)
             {
+                progress = 0;
                 StartCoroutine(LoadSceneAsync());
                 isActive = false;
             }
         }
-
+        
         public void ChangeScene(SceneEnum sceneEnum)
         {
             scene = sceneEnum.ToString();
+            StartCoroutine(ToLoadingScene());
+        }
+
+        IEnumerator ToLoadingScene()
+        {
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(SceneEnum.Loading.ToString());
+            while (asyncOperation.isDone)
+            {
+                yield return null;
+            }
             isActive = true;
         }
 
         IEnumerator LoadSceneAsync()
         {
-            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(scene);
-            while (!asyncOperation.isDone)
+            sceneOperation = SceneManager.LoadSceneAsync(scene);
+            sceneOperation.allowSceneActivation = false;
+            while (!sceneOperation.isDone)
             {
+                progress = sceneOperation.progress;
                 yield return null;
             }
+        }
+
+        public float GetProgress()
+        {
+            return progress;
+        }
+
+        public void JumpToScene()
+        {
+            sceneOperation.allowSceneActivation = true;
         }
     }
 }

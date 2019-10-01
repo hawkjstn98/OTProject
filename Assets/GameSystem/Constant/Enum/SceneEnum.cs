@@ -6,6 +6,7 @@
         Stage2,
         Stage3,
         Settings,
-        MainMenu
+        MainMenu,
+        Loading
     }
 }
