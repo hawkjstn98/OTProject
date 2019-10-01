@@ -30,7 +30,7 @@ public class PlayerController : GameConstants
         else if (!isGrounded && m_Jump && m_rb.velocity.y < 0)
         {
             SetGravityScale(1f);
-            verticalVelocity = GetGravityScale() * Time.deltaTime * -50f;
+            verticalVelocity = GetGravityScale() * Time.deltaTime * -0.05f;
             this.GetComponent<Rigidbody>().velocity = new Vector3(0, verticalVelocity, 0);
         }
         
@@ -78,6 +78,11 @@ public class PlayerController : GameConstants
     private void OnCollisionEnter(Collision other) {
         if("Ground".Equals(other.gameObject.tag)){
             isGrounded = true;
+        }
+        else if ("Mushroom".Equals(other.gameObject.tag))
+        {
+            isGrounded = false;
+            this.GetComponent<Rigidbody>().AddForce(Vector3.up * 10f, ForceMode.Impulse);
         }
     }
 }

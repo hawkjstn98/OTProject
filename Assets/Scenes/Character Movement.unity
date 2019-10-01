@@ -451,7 +451,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 409778299}
-  m_LocalRotation: {x: 0.16225013, y: 0.000000036792763, z: -0.00000007783535, w: 0.9867497}
+  m_LocalRotation: {x: 0.1622501, y: 0.0000000069285964, z: -0.00000007292482, w: 0.9867497}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -867,7 +867,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628667277}
-  m_LocalRotation: {x: 0.1262994, y: 0.0000000042061434, z: -0.000000033036272, w: 0.9919922}
+  m_LocalRotation: {x: 0.12629941, y: 0.000000004206143, z: -0.000000033036272, w: 0.9919922}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1145,7 +1145,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976343384}
-  m_LocalRotation: {x: 0.14571469, y: 0.0000000019780448, z: -2.9133973e-10, w: 0.98932666}
+  m_LocalRotation: {x: 0.14571467, y: -0.0000000023953743, z: 3.528068e-10, w: 0.98932666}
   m_LocalPosition: {x: 0.74, y: 4.547874, z: -8.111141}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1415,7 +1415,7 @@ GameObject:
   - component: {fileID: 1120391009}
   m_Layer: 0
   m_Name: Mushroom
-  m_TagString: Ground
+  m_TagString: Mushroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
