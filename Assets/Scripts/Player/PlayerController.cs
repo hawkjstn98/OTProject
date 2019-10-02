@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.GameSystem.Constant;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : GameConstants
 {
@@ -20,7 +21,11 @@ public class PlayerController : GameConstants
     private float verticalVelocity;
     public float HInput;
     public float VInput;
-    
+
+    // Character Properties
+    public int starCounter = 0;
+    public GameObject starText;
+
     void Update()
     {
         if(isGrounded && m_Jump && m_rb.velocity.y < 0.001f){
@@ -38,6 +43,8 @@ public class PlayerController : GameConstants
         {
             SetGravityScale(1f);
         }
+
+        starText.GetComponent<Text>().text = starCounter.ToString();
     }
     void OnEnable ()
     {
@@ -83,6 +90,11 @@ public class PlayerController : GameConstants
         {
             isGrounded = false;
             this.GetComponent<Rigidbody>().AddForce(Vector3.up * 10f, ForceMode.Impulse);
+        }
+        else if ("Star".Equals(other.gameObject.tag))
+        {
+            starCounter++;
+            Destroy(other.gameObject);
         }
     }
 }
