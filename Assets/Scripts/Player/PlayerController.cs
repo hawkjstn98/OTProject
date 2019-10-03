@@ -35,8 +35,8 @@ public class PlayerController : GameConstants
         else if (!isGrounded && m_Jump && m_rb.velocity.y < 0)
         {
             SetGravityScale(1f);
-            verticalVelocity = GetGravityScale() * Time.deltaTime * -0.05f;
-            this.GetComponent<Rigidbody>().velocity = new Vector3(0, verticalVelocity, 0);
+            verticalVelocity = GetGravityScale() * Time.deltaTime * 100f;
+            this.GetComponent<Rigidbody>().velocity = new Vector3(0, -verticalVelocity, 0);
         }
         
         if(!m_Jump)
@@ -86,15 +86,24 @@ public class PlayerController : GameConstants
         if("Ground".Equals(other.gameObject.tag)){
             isGrounded = true;
         }
-        else if ("Mushroom".Equals(other.gameObject.tag))
-        {
-            isGrounded = false;
-            this.GetComponent<Rigidbody>().AddForce(Vector3.up * 10f, ForceMode.Impulse);
-        }
+        // else if ("Mushroom".Equals(other.gameObject.tag))
+        // {
+        //     isGrounded = false;
+        //     this.GetComponent<Rigidbody>().AddForce(Vector3.up * 10f, ForceMode.Impulse);
+        // }
         else if ("Star".Equals(other.gameObject.tag))
         {
             starCounter++;
             Destroy(other.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        //Kalo Pake Double Collider yang 1nya trigger
+        if ("Mushroom".Equals(other.gameObject.tag))
+        {
+            isGrounded = false;
+            this.GetComponent<Rigidbody>().AddForce(Vector3.up * 10f, ForceMode.Impulse);
         }
     }
 }
