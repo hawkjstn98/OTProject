@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Assets.GameSystem.Constant.Enum;
 using GameSystem.Service;
@@ -7,20 +8,22 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject continueButton;
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (EventService.CheckPointExist())
+        {
+            continueButton.SetActive(true);
+        }
     }
 
     public void ToSettings()
     {
         SceneService.Instance.ChangeScene(SceneEnum.Settings);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

@@ -21,7 +21,7 @@ namespace GameSystem.Service
         public static GameSettings LoadSettings()
         {
             string file = PathConstants.GetPath(PathConstants.DATA_PATH+PathConstants.SETTING_FILE);
-            if (!file.Equals(DataEnum.DATA_NOT_EXIST.ToString()))
+            if (FileHelper<GameSettings>.FileExist(file))
             {
                 string json = File.ReadAllText(file);
                 GameSettings gameSettings = FileHelper<GameSettings>.JsonStringParserToObject(json, new GameSettings());

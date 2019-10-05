@@ -14,6 +14,7 @@ namespace GameSystem.Constant
         
         //File
         public const string SETTING_FILE = "Settings.json";
+        public const string CHECKPOINT_FILE = "Checkpoint.json";
         
 
         /// <summary>

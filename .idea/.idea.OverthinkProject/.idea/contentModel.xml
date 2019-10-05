@@ -18,12 +18,14 @@
             <e p="PathConstants.cs" t="Include" />
           </e>
           <e p="Entity" t="Include">
+            <e p="CheckPoint.cs" t="Include" />
             <e p="GameSettings.cs" t="Include" />
           </e>
           <e p="Lib" t="Include">
             <e p="FileHelper.cs" t="Include" />
           </e>
           <e p="Service" t="Include">
+            <e p="EventService.cs" t="Include" />
             <e p="PreferencesService.cs" t="Include" />
             <e p="SceneService.cs" t="Include" />
           </e>
@@ -59,9 +61,12 @@
             </e>
           </e>
         </e>
-        <e p="PlayerController.cs" t="Include" />
-        <e p="PlayerInput.cs" t="Include" />
         <e p="Scenes" t="Include">
+          <e p="Loading" t="Include">
+            <e p="Script" t="Include">
+              <e p="LoadingScript.cs" t="Include" />
+            </e>
+          </e>
           <e p="MainMenu" t="Include">
             <e p="Script" t="Include">
               <e p="MainMenuManager.cs" t="Include" />
@@ -73,6 +78,12 @@
             </e>
           </e>
           <e p="Tst.cs" t="Include" />
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="Player" t="Include">
+            <e p="PlayerController.cs" t="Include" />
+            <e p="PlayerInput.cs" t="Include" />
+          </e>
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
